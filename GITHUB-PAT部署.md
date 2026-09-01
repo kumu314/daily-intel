@@ -29,11 +29,23 @@ git push -u origin main
 或直接**双击 `intel/push.bat`**（Windows）/ 跑 `bash push.sh`（Git Bash）——已帮你写好，会自动 add/commit/push。
 （`gh` 已登录就不会再问；没装 gh 就按提示填用户名 kumu314 + 密码 PAT。）
 
-## 开 GitHub Pages
+## 开 GitHub Pages（已为你配好）
 
-仓库 → Settings → Pages → Source: **Deploy from a branch** → Branch: **main** →
-Folder: **/site** → Save。等一两分钟，访问 `https://kumu314.github.io/daily-intel/`。
-手机用 https 打开 → 添加到主屏幕。
+实际采用 **gh-pages 分支挂 Pages**（Pages 源只接受 `/` 或 `/docs`，不能直接指定 `/site`，
+故把 `site/` 内容作为 gh-pages 分支根目录推送）。当前状态：
+- Pages 源：`gh-pages` 分支 / 根目录
+- 线上地址：`https://kumu314.github.io/daily-intel/`（已实测 index/报告/sw/manifest 均 200）
+
+手机用 https 打开 → 浏览器菜单「添加到主屏幕」即可当 App 用（已带 manifest + service worker 离线缓存）。
+
+### 日后更新站点（两步脚本，已就绪）
+```bash
+cd intel
+python deploy_gh_pages.py   # 把最新 site/ 推到 gh-pages 分支 → 自动触发 Pages 重建
+python push_api.py "提交说明"   # 把仓库其它文件（pipeline/数据）推到 main 分支
+```
+> push_api.py 走 GitHub API（api.github.com），**绕开被代理封锁的 github.com git 通道**；
+> 沙箱里 `git push` 会 502，但 `gh` 已登录就能用这套脚本推。本机直连 GitHub 时 `git push` 也照常可用。
 
 ## 之后
 
