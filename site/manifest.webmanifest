@@ -1,0 +1,20 @@
+{
+  "name": "枯木每日情报",
+  "short_name": "每日情报",
+  "description": "一手信息交叉分析日报 · 可装到手机桌面",
+  "lang": "zh-CN",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef1f5",
+  "theme_color": "#123a33",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
